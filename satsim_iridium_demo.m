@@ -1,6 +1,5 @@
 % adapted from matlab website: https://www.mathworks.com/help/aerotbx/ug/satellitescenario.walkerstar.html
 
-
 startTime = datetime(2020,1,11,14,50,0);
 stopTime = startTime + hours(6);
 sampleTime = 60;  
@@ -25,55 +24,55 @@ for i=1:66
 end
 writematrix(sat_positions, "sat_positions.csv");
 
-pause
+% pause
 
-% add a ground station
-name = "Madrid Deep Space Communications Complex";
-lat1 = 40.43139;                                    % In degrees
-lon1 = -4.24806;                                    % In degrees
-gs1 = groundStation(sc, ...
-    Name=name,Latitude=lat1,Longitude=lon1);
-ac = access(sat, gs1);
-
-% add a ground station
-name = "user 1";
-lat2 = -32.736349;                                    % In degrees
-lon2 = 21.074430;                                    % In degrees 
-gs2 = groundStation(sc, ...
-    Name=name,Latitude=lat2,Longitude=lon2);
-
-ac = access(sat, gs2);
-
-play(sc);
-
-
-% satelliteScenarioViewer(sc);
-
-% Calculate propagation delay from each satellite to the ground station.
-% The latency function internally performs access analysis and returns NaN
-% whenever there is no access.
-[delay1,time1] = latency(sat,gs1);
-[delay2,time2] = latency(sat,gs2);
-
-% disp(delay);
-
-% plot(time,delay(1,:)*1000)                  % Plot in milliseconds
-% xlim([time(1) time(end)])
-% title("First Satellite's Latency vs. Time")
+% % add a ground station
+% name = "Madrid Deep Space Communications Complex";
+% lat1 = 40.43139;                                    % In degrees
+% lon1 = -4.24806;                                    % In degrees
+% gs1 = groundStation(sc, ...
+%     Name=name,Latitude=lat1,Longitude=lon1);
+% ac = access(sat, gs1);
+% 
+% % add a ground station
+% name = "user 1";
+% lat2 = -32.736349;                                    % In degrees
+% lon2 = 21.074430;                                    % In degrees 
+% gs2 = groundStation(sc, ...
+%     Name=name,Latitude=lat2,Longitude=lon2);
+% 
+% ac = access(sat, gs2);
+% 
+% play(sc);
+% 
+% 
+% % satelliteScenarioViewer(sc);
+% 
+% % Calculate propagation delay from each satellite to the ground station.
+% % The latency function internally performs access analysis and returns NaN
+% % whenever there is no access.
+% [delay1,time1] = latency(sat,gs1);
+% [delay2,time2] = latency(sat,gs2);
+% 
+% % disp(delay);
+% 
+% % plot(time,delay(1,:)*1000)                  % Plot in milliseconds
+% % xlim([time(1) time(end)])
+% % title("First Satellite's Latency vs. Time")
+% % xlabel("Simulation Time")
+% % ylabel("Latency (ms)")
+% % grid on
+% 
+% plot(time1,delay1*1000)                  % Plot in milliseconds
+% % xlim([time(1) time(end)])
+% title("ground station latency vs. Time")
 % xlabel("Simulation Time")
 % ylabel("Latency (ms)")
 % grid on
-
-plot(time1,delay1*1000)                  % Plot in milliseconds
-% xlim([time(1) time(end)])
-title("ground station latency vs. Time")
-xlabel("Simulation Time")
-ylabel("Latency (ms)")
-grid on
-
-plot(time2,delay2*1000)                  % Plot in milliseconds
-% xlim([time(1) time(end)])
-title("user latency vs. Time")
-xlabel("Simulation Time")
-ylabel("Latency (ms)")
-grid on
+% 
+% plot(time2,delay2*1000)                  % Plot in milliseconds
+% % xlim([time(1) time(end)])
+% title("user latency vs. Time")
+% xlabel("Simulation Time")
+% ylabel("Latency (ms)")
+% grid on
