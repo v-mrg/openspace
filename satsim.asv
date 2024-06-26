@@ -1,0 +1,30 @@
+startTime = datetime(2020, 5, 12, 13, 0, 0);
+stopTime = startTime + hours(6);
+sampleTime = 30;
+sc = satelliteScenario(startTime, stopTime, sampleTime);
+disp(sc);
+
+tlefile = "leoSatelliteConstellation.tle";
+sat = satellite(sc, tlefile);
+disp(sat);
+
+names = sat.Name + " RF Antenna";
+ant = conicalSensor(sat,"Name",names,"MaxViewAngle",90);
+
+name = "user";
+minElevationAngle = 30;
+geoSite = groundStation(sc, ...
+    "Name",name, ...
+    "MinElevationAngle",minElevationAngle);
+disp(geoSite);
+
+ac = access(ant, geoSite);
+
+viewer = satelliteScenarioViewer(sc, "ShowDetails", false);
+sat(4).ShowLabel = true;
+geoSite.ShowLabel = true;
+
+
+show(sat(4));
+
+fov = fieldOfView(cam([cam.Name] == "Satellite 4 RF Antenna"));
