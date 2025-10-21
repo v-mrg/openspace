@@ -1,6 +1,5 @@
 % adapted from matlab website: https://www.mathworks.com/help/aerotbx/ug/satellitescenario.walkerstar.html
 
-
 startTime = datetime(2020,1,11,14,50,0);
 stopTime = startTime + hours(6);
 sampleTime = 60;  
@@ -18,12 +17,12 @@ sat_positions = zeros(3, 66);
 disp("trying to get satellite position");
 
 for i=1:66
-      
-    pos = states(sat(1));
+    pos = states(sat(i));
     pos_10 = pos(:, 10);
-    disp(pos_10);
-
-sat_positions(:, 1) = pos_10;
+    sat_positions(:, i) = pos_10;
+    % disp(pos_10);
+end
+writematrix(sat_positions, "sat_positions.csv");
 
 pause
 
